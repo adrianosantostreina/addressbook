@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2018/05/28 13:59:17.000.704,=D:\Users\adrianosantosvm\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2018/05/30 17:12:11.000.493,=D:\Users\adrianosantosvm\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2018/06/01 16:44:31.000.666,=D:\Users\adrianosantosvm\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2018/07/06 08:51:21.131,=D:\Users\adrianosantosvm\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2018/07/06 08:52:04.230,D:\GitHub TDevRocks\addressbook\Unit1.pas=D:\Users\adrianosantosvm\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2018/07/06 08:52:04.230,D:\GitHub TDevRocks\addressbook\Unit1.fmx=D:\Users\adrianosantosvm\Documents\Embarcadero\Studio\Projects\Unit1.fmx</Transaction>
+    <Transaction>2018/07/06 08:52:08.473,D:\GitHub TDevRocks\addressbook\.dproj=D:\Users\adrianosantosvm\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2018/07/06 08:52:20.948,D:\GitHub TDevRocks\addressbook\AddressBook.dproj=D:\GitHub TDevRocks\addressbook\.dproj</Transaction>
+  </Transactions>
+	<ActiveMobileDevice>
+		<NoProfile iOSSimulator="iPhone5" Android="0023109677"/>  <PmacOS iOSSimulator="_iossimulator_03329C3C-3B60-467A-AF0F-C42F6D619537" iOSDevice64="_iosdevice_4ffabefb7f627206075774fea4e08fb694dd3506" iOSDevice32="_iosdevice_4ffabefb7f627206075774fea4e08fb694dd3506"/>
+  </ActiveMobileDevice>
+</BorlandProject>

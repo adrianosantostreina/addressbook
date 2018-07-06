@@ -1,0 +1,214 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 570
+  ClientWidth = 380
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnShow = FormShow
+  DesignerMasterStyle = 3
+  object ToolBar1: TToolBar
+    Size.Width = 380.000000000000000000
+    Size.Height = 48.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 8
+    object Button1: TButton
+      Align = Center
+      Size.Width = 297.000000000000000000
+      Size.Height = 44.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'Listar Contatos'
+    end
+  end
+  object ListView1: TListView
+    ItemAppearanceClassName = 'TImageListItemBottomDetailAppearance'
+    ItemEditAppearanceClassName = 'TImageListItemBottomDetailShowCheckAppearance'
+    HeaderAppearanceClassName = 'TListHeaderObjects'
+    FooterAppearanceClassName = 'TListHeaderObjects'
+    Align = Top
+    Position.Y = 48.000000000000000000
+    Size.Width = 380.000000000000000000
+    Size.Height = 209.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 9
+  end
+  object Label1: TLabel
+    Align = Top
+    Margins.Left = 4.000000000000000000
+    Margins.Top = 4.000000000000000000
+    Margins.Right = 4.000000000000000000
+    Margins.Bottom = 4.000000000000000000
+    Position.X = 4.000000000000000000
+    Position.Y = 261.000000000000000000
+    Size.Width = 372.000000000000000000
+    Size.Height = 23.000000000000000000
+    Size.PlatformDefault = False
+    StyleLookup = 'toollabel'
+    Text = 'Emails'
+    TabOrder = 10
+  end
+  object ListView2: TListView
+    ItemAppearanceClassName = 'TImageListItemBottomDetailAppearance'
+    ItemEditAppearanceClassName = 'TListItemShowCheckAppearance'
+    HeaderAppearanceClassName = 'TListHeaderObjects'
+    FooterAppearanceClassName = 'TListHeaderObjects'
+    Align = Client
+    Size.Width = 380.000000000000000000
+    Size.Height = 282.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 11
+  end
+  object AddressBook1: TAddressBook
+    OnPermissionRequest = AddressBook1PermissionRequest
+    Left = 312
+    Top = 496
+  end
+  object FDConn: TFDConnection
+    Params.Strings = (
+      
+        'Database=D:\GitHub TDevRocks\addressbook\infra\TAddressBook.sqli' +
+        'te'
+      'OpenMode=ReadWrite'
+      'DriverID=SQLite')
+    LoginPrompt = False
+    BeforeConnect = FDConnBeforeConnect
+    Left = 208
+    Top = 296
+  end
+  object QryContatos: TFDQuery
+    Connection = FDConn
+    SQL.Strings = (
+      'SELECT * FROM CONTATOS')
+    Left = 208
+    Top = 368
+    object QryContatosID: TIntegerField
+      FieldName = 'ID'
+      Origin = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object QryContatosFIRSTNAME: TStringField
+      FieldName = 'FIRSTNAME'
+      Origin = 'FIRSTNAME'
+      Size = 100
+    end
+    object QryContatosLASTNAME: TStringField
+      FieldName = 'LASTNAME'
+      Origin = 'LASTNAME'
+      Size = 100
+    end
+  end
+  object dtsContatos: TDataSource
+    DataSet = QryContatos
+    Left = 208
+    Top = 432
+  end
+  object QryEmails: TFDQuery
+    IndexFieldNames = 'ID_CONTATO'
+    MasterSource = dtsContatos
+    MasterFields = 'ID'
+    DetailFields = 'ID_CONTATO'
+    Connection = FDConn
+    SQL.Strings = (
+      'SELECT * FROM EMAILS WHERE ID_CONTATO = :ID')
+    Left = 208
+    Top = 496
+    ParamData = <
+      item
+        Name = 'ID'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+    object QryEmailsID: TFDAutoIncField
+      FieldName = 'ID'
+      Origin = 'ID'
+      ProviderFlags = [pfInWhere, pfInKey]
+    end
+    object QryEmailsID_CONTATO: TIntegerField
+      FieldName = 'ID_CONTATO'
+      Origin = 'ID_CONTATO'
+    end
+    object QryEmailsEMAIL_WORK: TStringField
+      FieldName = 'EMAIL_WORK'
+      Origin = 'EMAIL_WORK'
+      Size = 100
+    end
+    object QryEmailsEMAIL_HOME: TStringField
+      FieldName = 'EMAIL_HOME'
+      Origin = 'EMAIL_HOME'
+      Size = 100
+    end
+    object QryEmailsEMAIL_OTHER: TStringField
+      FieldName = 'EMAIL_OTHER'
+      Origin = 'EMAIL_OTHER'
+      Size = 100
+    end
+    object QryEmailsTIPO_EMAIL: TStringField
+      FieldName = 'TIPO_EMAIL'
+      Origin = 'TIPO_EMAIL'
+      Size = 10
+    end
+  end
+  object FDPhysSQLiteDriverLink1: TFDPhysSQLiteDriverLink
+    Left = 312
+    Top = 296
+  end
+  object QryAux1: TFDQuery
+    Connection = FDConn
+    Left = 312
+    Top = 368
+  end
+  object QryAux2: TFDQuery
+    Connection = FDConn
+    Left = 312
+    Top = 432
+  end
+  object BindSourceDB1: TBindSourceDB
+    DataSet = QryContatos
+    ScopeMappings = <>
+    Left = 48
+    Top = 368
+  end
+  object BindingsList1: TBindingsList
+    Methods = <>
+    OutputConverters = <>
+    Left = 44
+    Top = 309
+    object LinkListControlToField1: TLinkListControlToField
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB1
+      FieldName = 'FIRSTNAME'
+      Control = ListView1
+      FillExpressions = <
+        item
+          SourceMemberName = 'LASTNAME'
+          ControlMemberName = 'Detail'
+        end>
+      FillHeaderExpressions = <>
+      FillBreakGroups = <>
+    end
+    object LinkListControlToField2: TLinkListControlToField
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB2
+      FieldName = 'EMAIL_WORK'
+      Control = ListView2
+      FillExpressions = <
+        item
+          SourceMemberName = 'TIPO_EMAIL'
+          ControlMemberName = 'Detail'
+        end>
+      FillHeaderExpressions = <>
+      FillBreakGroups = <>
+    end
+  end
+  object BindSourceDB2: TBindSourceDB
+    DataSet = QryEmails
+    ScopeMappings = <>
+    Left = 48
+    Top = 432
+  end
+end
